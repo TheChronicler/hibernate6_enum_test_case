@@ -33,10 +33,18 @@ public class JPAUnitTestCase {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 
-		Query query = entityManager.createQuery("SELECT t from TestTbl AS t WHERE t.testEnum IS NULL AND :testEnum IS NULL");
-		query.setParameter("testEnum", TestEnum.VALUE_1);
 
-		List resultList = query.getResultList();
+		// This works
+		Query query = entityManager.createQuery("SELECT t from TestTbl AS t WHERE t.testEnum IS NULL AND :testEnum IS NULL");
+		query.setParameter("testEnum", null);
+		query.getResultList();
+
+		// This fails
+		Query query2 = entityManager.createQuery("SELECT t from TestTbl AS t WHERE t.testEnum IS NULL AND :testEnum IS NULL");
+		query2.setParameter("testEnum", TestEnum.VALUE_1);
+		query2.getResultList();
+
+
 
 		// Do stuff...
 		entityManager.getTransaction().commit();
