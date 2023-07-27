@@ -22,12 +22,6 @@
             <artifactId>hibernate-testing</artifactId>
             <version>6.2.5.Final</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate</groupId>-->
-<!--            <artifactId>hibernate-testing</artifactId>-->
-<!--            <version>5.6.15.Final</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
