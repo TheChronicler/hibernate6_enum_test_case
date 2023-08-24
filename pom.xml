@@ -11,16 +11,20 @@
         <version.com.h2database>2.1.214</version.com.h2database>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <version.org.hibernate>6.2.5.Final</version.org.hibernate>
+        <version.org.hibernate>6.1.7.Final</version.org.hibernate>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${version.org.hibernate}</version>
+        </dependency>
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-testing</artifactId>
-            <version>6.2.5.Final</version>
+            <version>${version.org.hibernate}</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>

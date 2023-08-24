@@ -33,18 +33,18 @@ public class JPAUnitTestCase {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 
+		OtherTbl otherTbl = new OtherTbl();
+		entityManager.persist(otherTbl);
 
-		// This works
-		Query query = entityManager.createQuery("SELECT t from TestTbl AS t WHERE t.testEnum IS NULL AND :testEnum IS NULL");
-		query.setParameter("testEnum", null);
-		query.getResultList();
+		TestTbl testTbl1 = new TestTbl();
+		testTbl1.setOtherTbl(otherTbl);
+		entityManager.persist(testTbl1);
 
-		// This fails
-		Query query2 = entityManager.createQuery("SELECT t from TestTbl AS t WHERE t.testEnum IS NULL AND :testEnum IS NULL");
-		query2.setParameter("testEnum", TestEnum.VALUE_1);
-		query2.getResultList();
+		TestTbl testTbl2 = new TestTbl();
+		testTbl2.setOtherTbl(otherTbl);
 
-
+		// This should work as the index is set to have unique = false
+		entityManager.persist(testTbl2);
 
 		// Do stuff...
 		entityManager.getTransaction().commit();
